@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as path from "path";
 import * as vscode from "vscode";
+import { generateDiagramAsHTML } from "./html-generator/GenerateDiagram";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -22,6 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
       // The code you place here will be executed every time your command is executed
 
       // Display a message box to the user
+
       // vscode.window.showInformationMessage(
       //   "Hello World from Visualize Control Flow!"
       // );
@@ -38,6 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
       );
 
       panel.webview.html = `<p>HelloWorld</p>`;
+
     }
   );
   const scriptPathOnDisk = vscode.Uri.file(
@@ -48,12 +51,12 @@ export function activate(context: vscode.ExtensionContext) {
     path.join(context.extensionPath, "src", "svg.js")
   );
 
-  let openWebView = vscode.commands.registerCommand(
-    "visualize-control-flow.openWebView",
+  let visualizeOpenFile = vscode.commands.registerCommand(
+    "visualize-control-flow.visualizeOpenFile",
     () => {
       const panel = vscode.window.createWebviewPanel(
-        "UMLView",
-        "UML View",
+        "Control Flow Diagram",
+        "Control Flow Diagram: python_demo2.py",
         vscode.ViewColumn.One,
         {
           enableScripts: true,
@@ -97,12 +100,15 @@ export function activate(context: vscode.ExtensionContext) {
 </html>
 
 `;
+
     }
   );
 
   context.subscriptions.push(disposable);
-  context.subscriptions.push(openWebView);
+  context.subscriptions.push(visualizeOpenFile);
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+	vscode.window.showInformationMessage('Sorry to see you go!');
+}
