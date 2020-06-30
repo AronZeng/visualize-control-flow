@@ -39,12 +39,4 @@ Where do we start?!
 
 - Limited Control Flow Logic is Supported
 - Not dynamic yet
-- Play around and see...😎
 
-## Release Notes
-
-Published Versions:
-
-### 1.0.0
-
-Initial release of Visualize Control Flow
